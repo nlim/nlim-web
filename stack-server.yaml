@@ -1,0 +1,9 @@
+resolver: lts-10.2
+packages:
+  - '.'
+
+# Override default flag values for local packages and extra-deps
+flags: {}
+
+# Extra package databases containing global packages
+extra-package-dbs: []
