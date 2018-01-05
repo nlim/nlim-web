@@ -22,15 +22,23 @@ import qualified System.IO                            as IO
 import           Miso
 import           GHC.Generics
 import           Data.Aeson
+import           System.Environment (getArgs)
+import           Safe (readMay, headMay)
 
 main :: IO ()
 main = do
-  IO.hPutStrLn IO.stderr "Running on port 3003..."
+  args <- getArgs
+  mainWithArgs args
 
-  run 3003 $ logStdout (compress app)
+mainWithArgs :: [String] -> IO ()
+mainWithArgs args = do
+  (IO.hPutStrLn IO.stderr ("Running on port: " ++ show port))
+  (run port $ logStdout (compress app))
     where
       compress :: Middleware
       compress = gzip def { gzipFiles = GzipCompress }
+      port :: Port
+      port = maybe 3003 id (headMay args >>= readMay)
 
 app :: Application
 app = Servant.serve (Proxy @ServerAPI) (static :<|> fibHandler)
