@@ -28,21 +28,13 @@ import           Safe (readMay, headMay)
 main :: IO ()
 main = do
   args <- getArgs
-  mainWithArgs args
-
-mainWithArgs :: [String] -> IO ()
-mainWithArgs args = do
+  let port = maybe 3003 id (headMay args >>= readMay) :: Port
+      compress = gzip def { gzipFiles = GzipCompress } :: Middleware
   (IO.hPutStrLn IO.stderr ("Running on port: " ++ show port))
   (run port $ logStdout (compress app))
-    where
-      compress :: Middleware
-      compress = gzip def { gzipFiles = GzipCompress }
-      port :: Port
-      port = maybe 3003 id (headMay args >>= readMay)
 
 app :: Application
 app = Servant.serve (Proxy @ServerAPI) (static :<|> fibHandler)
-    --Servant.serve (Proxy @ServerAPI) (static :<|> serverHandlers)
   where
     static :: Servant.Server StaticAPI
     static = Servant.serveDirectoryFileServer "static"
