@@ -1,5 +1,7 @@
 SHELL := /bin/bash
 
+install:
+	$(MAKE) all
 
 all:
 	$(MAKE) static/all.min.js
