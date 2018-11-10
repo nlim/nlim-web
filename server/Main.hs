@@ -84,4 +84,5 @@ instance FromJSON FibResult
 type FibAPI = "fib" :> Servant.Capture "int" Int :> Servant.Get '[Servant.JSON] FibResult
 --  :<|> ServerRoutes
 
-type StaticAPI = "static" :> Servant.Raw
+-- type StaticAPI = "static" :> Servant.Raw
+type StaticAPI = Servant.Raw
