@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 install:
-	$(MAKE) all
+	stack build --stack-yaml stack-server.yaml --install-ghc --copy-bins
 
 all:
 	$(MAKE) static/all.min.js
