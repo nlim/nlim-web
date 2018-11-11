@@ -1,10 +1,12 @@
 SHELL := /bin/bash
 
 install:
+	./set_js_url.sh
 	stack build --stack-yaml stack-server.yaml --install-ghc --copy-bins
 
-all:
+all-dev:
 	$(MAKE) static/all.min.js
+	cp static/index-dev.html static/index.html
 	$(MAKE) bin/server
 
 bin/server:

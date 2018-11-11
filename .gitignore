@@ -22,3 +22,4 @@ cabal.project.local
 *.jsexe
 bin/
 static/*.js
+static/index.html
