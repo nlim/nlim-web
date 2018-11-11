@@ -2,6 +2,8 @@
 
 CUBENAME=$(echo "$CLOUDCUBE_URL" | awk -F "/" ' { print $4 }')
 
+echo $(pwd)
+
 rm -f static/index.html
 touch static/index.html
 
