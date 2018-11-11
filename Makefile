@@ -6,7 +6,7 @@ install:
 
 all-dev:
 	$(MAKE) static/all.min.js
-	cp static/index-dev.html static/index.html
+	cp index-dev.html static/index.html
 	$(MAKE) bin/server
 
 bin/server:
