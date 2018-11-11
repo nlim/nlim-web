@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 install:
-	CUBENAME=$(echo "$CLOUDCUBE_URL" | awk -F "/" ' { print $4 }')  sed "s/CUBENAME/${CUBENAME}/g" index-prod.html > static/index.html
+	CUBENAME=$(echo "$CLOUDCUBE_URL" | awk -F "/" ' { print $4 }')  sed "s/CUBENAME/${CUBENAME}/g" index-prod.html > /app/static/index.html
 	stack build --stack-yaml stack-server.yaml --install-ghc --copy-bins
 
 all-dev:
