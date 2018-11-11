@@ -1,7 +1,6 @@
 SHELL := /bin/bash
 
 install:
-	./set_js_url.sh
 	stack build --stack-yaml stack-server.yaml --install-ghc --copy-bins
 
 all-dev:
